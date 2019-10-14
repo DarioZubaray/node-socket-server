@@ -30,7 +30,7 @@ export default class Server {
             console.log('Nuevo cliente conectado');
 
             socket.desconectar(cliente);
-            socket.mensaje(cliente);
+            socket.mensaje(cliente, this.io);
         });
     }
 
