@@ -14,5 +14,5 @@ tsc -w
 
 Levantar servidor 
 ```
-nodemon dist/index.js
+nodemon dist/
 ```
