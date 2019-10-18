@@ -2,15 +2,14 @@ import {Router, Request, Response} from 'express';
 import Server  from '../classes/Server';
 import { usuariosConectados } from '../sockets/sockets';
 import { GraficaData } from '../classes/Grafica';
+import { Encuesta } from '../classes/Encuesta';
 
 const router = Router();
 
 const grafica = new GraficaData();
-
 router.get('/grafica', (req: Request, res: Response) => {
     res.json(grafica.getDataGrafica());
 });
-
 router.post('/grafica', (req: Request, res: Response) => {
     const mes = req.body.mes;
     const valor = Number(req.body.valor);
@@ -21,6 +20,22 @@ router.post('/grafica', (req: Request, res: Response) => {
     server.io.emit('cambio-grafica', grafica.getDataGrafica());
 
     res.json(grafica.getDataGrafica());
+});
+
+const encuesta = new Encuesta();
+router.get('/encuesta', (req: Request, res: Response) => {
+    res.json(encuesta.getDataGrafica());
+});
+router.post('/encuesta', (req: Request, res: Response) => {
+    const pregunta = req.body.pregunta;
+    const valor = Number(req.body.valor);
+
+    encuesta.incrementarValor(pregunta, valor);
+    //cambio-encuesta
+    const server = Server.instance;
+    server.io.emit('cambio-encuesta', encuesta.getDataGrafica());
+
+    res.json(encuesta.getDataGrafica());
 });
 
 router.get('/mensajes', (req: Request, res: Response) => {
