@@ -3,8 +3,26 @@ import Server  from '../classes/Server';
 import { usuariosConectados } from '../sockets/sockets';
 import { GraficaData } from '../classes/Grafica';
 import { Encuesta } from '../classes/Encuesta';
+import { Mapa } from '../classes/Mapa';
 
 const router = Router();
+
+const mapa = new Mapa();
+const lugares = [
+    {
+        id: '1', nombre: 'Udemy', lat: 37.784679, lng: -122.395936
+    },
+    {
+        id: '2', nombre: 'Bahía de San Francisco', lat: 37.798933, lng: -122.377732
+    },
+    {
+        id: '3', nombre: 'The Palace Hotel', lat: 37.788578, lng: -122.401745
+    }
+  ];
+mapa.marcadores.push(...lugares);
+router.get('/mapa', (req: Request, res: Response) => {
+    res.json(mapa.getMarcadores());
+});
 
 const grafica = new GraficaData();
 router.get('/grafica', (req: Request, res: Response) => {
