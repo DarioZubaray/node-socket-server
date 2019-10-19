@@ -7,7 +7,7 @@ import { Mapa } from '../classes/Mapa';
 
 const router = Router();
 
-const mapa = new Mapa();
+export const mapa = new Mapa();
 const lugares = [
     {
         id: '1', nombre: 'Udemy', lat: 37.784679, lng: -122.395936

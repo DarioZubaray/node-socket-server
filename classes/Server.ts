@@ -34,6 +34,7 @@ export default class Server {
             socket.obtenerUsuario(cliente, this.io);
             socket.desconectar(cliente, this.io);
             socket.mensaje(cliente, this.io);
+            socket.marcadorNuevo(cliente);
         });
     }
 
