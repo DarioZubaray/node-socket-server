@@ -63,3 +63,10 @@ export const marcadorBorrar = (cliente: Socket) => {
         cliente.broadcast.emit('marcador-borrar', id);
     })
 }
+
+export const marcadorMover = (cliente: Socket) => {
+    cliente.on('marcador-mover', (marcador) => {
+        mapa.moverMarcador(marcador);
+        cliente.broadcast.emit('marcador-mover', marcador);
+    })
+}

@@ -36,6 +36,7 @@ export default class Server {
             socket.mensaje(cliente, this.io);
             socket.marcadorNuevo(cliente);
             socket.marcadorBorrar(cliente);
+            socket.marcadorMover(cliente);
         });
     }
 
